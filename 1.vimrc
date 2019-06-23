@@ -125,7 +125,6 @@ let NERDTreeShowBookmarks=1
 
 "---------------------------------------------tagbar--------------------------------------------
 " Tagbar
-" Tagbar                    
 nmap <F3> :TagbarToggle<CR>
  
 let g:tagbar_left=0
@@ -169,7 +168,7 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-
 " Cscope mappings
 nmap <C-\>w :scs find c<C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-/>g :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
@@ -197,25 +196,25 @@ Plugin 'gmarik/Vundle.vim'
 " github上的插件
 " 格式为 Plugin '用户名/插件仓库名'
 "
-" "Plugin 'scrooloose/nerdtree'	"会报错
-"Plugin 'majutsushi/tagbar'
-"Plugin 'taglist.vim'
+" "Plugin 'scrooloose/nerdtree'	""""会报错
+Plugin 'majutsushi/tagbar'
+Plugin 'taglist.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'ervandew/supertab'
 "Plugin 'scrooloose/nerdcommenter'
 "Plugin 'godlygeek/tabular'
-"Plugin 'plasticboy/vim-markdown'
 "Plugin 'mbbill/echofunc'
-"Plugin 'vim-airline/vim-airline'
 "Plugin 'spf13/PIV' " PHP Integration environment
 "Plugin 'ap/vim-css-color'
 "Plugin 'airblade/vim-gitgutter' " Git status for each line
 "Plugin 'joonty/vdebug' " DBGP debugger
 "Plugin 'ervandew/supertab'
 "Plugin 'evidens/vim-twig'
-" Plugin 'ervandew/supertab'
 " Plugin 'Valloric/YouCompleteMe'
 " Plugin 'Valloric/YouCompleteMe'
 
-Bundle 'davidhalter/jedi-vim'  
+" Bundle 'davidhalter/jedi-vim'  
 " Bundle 'ervandew/supertab'
 
 " Bundle 'Valloric/YouCompleteMe'
@@ -244,7 +243,7 @@ call vundle#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YouCompleteMe  代码自动补全
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe'
 " youcompleteme  默认tab  s-tab 和自动补全冲突
 " let g:ycm_key_list_select_completion=['<c-n>']
 " let g:ycm_key_list_select_completion = ['<Down>']
