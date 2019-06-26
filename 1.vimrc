@@ -7,7 +7,6 @@ syntax on "语法高亮
 " set softtabstop=4
 " set shiftwidth=4 "统一缩进为4
 " set expandtab "不要用空格替代制表符
-" set number "显示行号
 
 set smartcase
 
@@ -27,6 +26,9 @@ set scrolloff=3 "光标移动到buffer的顶部和底部时保持3行的距离
 set showmatch "高亮显示对应的括号
 set matchtime=5 "对应括号高亮时间(单位是十分之一秒)
 set matchpairs+=<:>                                               " specially for html
+
+set laststatus=1  "总是显示状态行 use  lines for the status bar
+set statusline=[%F]%y%r%m%*%=[Line:%l/%L,Column:%c][%p%%] "显示文件名：总行数，总的字符数
 " set relativenumber
 
 set autowrite "在切换buffer时自动保存当前文件
@@ -71,7 +73,7 @@ inoremap <silent> <C-s> <C-o>:update<CR>
 
 "---------------------------------------------配色--------------------------------------------
 set t_Co=256   "256色
-"colorscheme desert
+colorscheme desert
 "colorscheme darkblue
 "colorscheme delek
 "colorscheme elflord
@@ -81,7 +83,7 @@ set t_Co=256   "256色
 "colorscheme torte 
 "colorscheme pablo
 "colorscheme zellner 
-colorscheme murphy
+"colorscheme murphy
 "colorscheme slate
 "colorscheme industry
 
@@ -110,11 +112,16 @@ set incsearch "搜素高亮,搜索逐渐高亮
 set smartindent "智能对齐
 set autoindent "自动对齐
 
+"---------------------------------------------显示行号--------------------------------------------
+set nonumber "显示行号
+map <F11> :set nonumber<CR>
+map <F12> :set number<CR>
 
 "---------------------------------------------NERDTree-----------------------------------------
 " NERDTree配置
 "map <C-n> :NERDTreeToggle<CR>
 nmap <F2> :NERDTreeToggle<CR>
+"map <F2> :NERDTreeMirror<CR>
 
  " 在 vim 启动的时候默认开启 NERDTree（autocmd 可以缩写为 au）
 " autocmd VimEnter * NERDTree
@@ -123,15 +130,29 @@ nmap <F2> :NERDTreeToggle<CR>
 " 当打开 NERDTree 窗口时，自动显示 Bookmarks
 let NERDTreeShowBookmarks=1
 
+let g:NERDTreeWinPos="left"
+let g:NERDTreeWinSize=30
+"let g:NERDTreeShowLineNumbers=1
+let g:neocomplcache_enable_at_startup = 1
+
 "---------------------------------------------tagbar--------------------------------------------
 " Tagbar
+"nmap <F3> :TagbarToggle<CR>
 nmap <F3> :TagbarToggle<CR>
- 
+
 let g:tagbar_left=0
 let g:tagbar_width=30
 let g:tagbar_autofocus = 1
 let g:tagbar_sort = 0
 let g:tagbar_compact = 1
+
+"---------------------------------------------taglist--------------------------------------------
+"nmap <F3>:TlistOpen<CR>
+"nmap <F4>:TlistClose<CR>
+let Tlist_Show_One_File=1    "只显示当前文件的tags
+let Tlist_WinWidth=40        "设置taglist宽度
+let Tlist_Exit_OnlyWindow=1  "tagList窗口是最后一个窗口，则退出Vim
+let Tlist_Use_Right_Window=1 "在Vim窗口右侧显示taglist窗口
 
 "---------------------------------------------cscope--------------------------------------------
 if has("cscope")  
@@ -168,7 +189,7 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-
 " Cscope mappings
 nmap <C-\>w :scs find c<C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-/>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
@@ -176,6 +197,9 @@ nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
+"---------------------------------------------ctags--------------------------------------------
+set tags=tags;
+set autochdir
 
 "---------------------------------------------Vundle--------------------------------------------
 
@@ -456,8 +480,8 @@ endif
 " dd 								删除光标所在行        
 " dw 								删除一个字(word)    
 " d/D								删除到行末            
-" x								删除当前字符             
-" X								删除前一个字符            
+" x									删除当前字符             
+" X									删除前一个字符            
 " yy								复制一行             
 " yw								复制一个字            
 " y/Y								复制到行末        
@@ -471,12 +495,12 @@ endif
 " "\C"								大小写敏感                             
 " n 								下一个匹配(/搜索，则向下一个，?搜索则是向上一个)          
 " N 								上一个匹配(同上)                           
-" :%s/old/new/g 						搜索整个文件，将所有的old替换为new        
-" :%s/old/new/gc 						搜索整个文件，将所有的old替换为new，需确认是否替换
+" :%s/old/new/g 					搜索整个文件，将所有的old替换为new        
+" :%s/old/new/gc 					搜索整个文件，将所有的old替换为new，需确认是否替换
 "
 "    
 """""""""多文件编辑"""""""""
-" vim file1..							同时打开多个文件           
+" vim file1..						同时打开多个文件           
 " :args 							显示当前编辑文件                 
 " :next 							切换到下个文件                     
 " :prev 							切换到前个文件                     
@@ -487,14 +511,14 @@ endif
 " :first 							定位首文件                       
 " :last 							定位尾文件                     
 " ctrl+^ 							快速在最近打开的两个文件间切换             
-" :split[sp]							把当前文件水平分割               
-" :split file							把当前窗口水平分割, file       
-" :vsplit[vsp] file						把当前窗口垂直分割, file   
+" :split[sp]						把当前文件水平分割               
+" :split file						把当前窗口水平分割, file       
+" :vsplit[vsp] file					把当前窗口垂直分割, file   
 " :new file							同split file             
 " :close 							关闭当前窗口                      
 " :only 							只显示当前窗口, 关闭所有其他的窗口          
 " :all								打开所有的窗口                     
-" :vertical all 						打开所有的窗口, 垂直打开         
+" :vertical all 					打开所有的窗口, 垂直打开         
 " :qall 							对所有窗口执行：q操作               
 " :qall! 							对所有窗口执行：q!操作                
 " :wall 							对所有窗口执行：w操作                 
@@ -507,8 +531,8 @@ endif
 " ctrl-w b 							跳转到最底下的窗口                 
 "    
 " """""""""多标签编辑"""""""""
-" :tabedit file 						在新标签中打开文件file  
-" :tab split file						在新标签中打开文件file   
+" :tabedit file 					在新标签中打开文件file  
+" :tab split file					在新标签中打开文件file   
 " :tabp 							切换到前一个标签             
 " :tabn 							切换到后一个标签             
 " :tabc 							关闭当前标签               
@@ -522,27 +546,27 @@ endif
 """""""""分屏"""""""""
 " 水平分屏
 " vim -on file1 file2 ...   
-" o								是小写字母o,不是数字零
-" n								表示你要分屏的文件个数)        
+" o									是小写字母o,不是数字零
+" n									表示你要分屏的文件个数)        
 " filen								文件名多个文件用空格分开
  
-" ctrl + w + k							跳到上面文件
-" ctrl + w + j							跳到下面文件
-" :sp filename							分屏后再打开文件
+" ctrl + w + k						跳到上面文件
+" ctrl + w + j						跳到下面文件
+" :sp filename						分屏后再打开文件
 "  
 " 垂直分屏
 " vim -On file1 file2 .....  
-" ctrl + w + h							跳到左边文件   
-" ctrl + w + l							跳到右边文件
-" set scrollbind 						同步滚动
-" set noscrollbind						关闭同步滚动
+" ctrl + w + h						跳到左边文件   
+" ctrl + w + l						跳到右边文件
+" set scrollbind 					同步滚动
+" set noscrollbind					关闭同步滚动
 "    
 "--------------------------------------------NERDTree快捷键---------------------------------------------
 """""""""切换工作台和目录"""""""""
-" ctrl + w + h							光标 focus 左侧树形目录
-" ctrl + w + l							光标 focus 右侧文件显示窗口
-" ctrl + w + w							光标自动在左右侧窗口切换
-" ctrl + w + r							移动当前窗口的布局位置 
+" ctrl + w + h						光标 focus 左侧树形目录
+" ctrl + w + l						光标 focus 右侧文件显示窗口
+" ctrl + w + w						光标自动在左右侧窗口切换
+" ctrl + w + r						移动当前窗口的布局位置 
 " 
 " o       							在已有窗口中打开文件、目录或书签，并跳到该窗口
 " go      							在已有窗口 中打开文件、目录或书签，但不跳到该窗口
@@ -593,10 +617,10 @@ endif
 "         							
 "-----------------------------------------cscope快捷键------------------------------------------------
 " 生成文件列表
-" >>> find . -name "*.[c|h]" -o -name "Makefile*" -o -name "*.lds" > cscope.files	
+" >>> find . -name "*.[c|h|S|dts|dtsi|lds|mk]" -o -name "Makefile*" -o -name "*config*" > cscope.files	
 		
-" cscope -Rbqk							创建数据库
-" :cs add cscope.out						连接数据库
+" cscope -Rbqk						创建数据库
+" :cs add cscope.out				连接数据库
 "
 """""""""查找"""""""""
 " :cs find {querytype} {name}   
@@ -611,35 +635,32 @@ endif
 "
 " :cs help							帮助
 " :cs show							显示连接
-" :cs kill {num|partial_name}					删除连接
+" :cs kill {num|partial_name}		删除连接
 "
 "
 "-----------------------------------------ctag快捷键------------------------------------------------
-" {								转到上一个空行
-" }								转到下一个空行
+" {									转到上一个空行
+" }									转到下一个空行
 " gd 								转到当前光标所指的局部变量的定义
-" *								转到当前光标所指的单词下一次出现的地方
+" *									转到当前光标所指的单词下一次出现的地方
 " # 								转到当前光标所指的单词上一次出现的地方
 " ctrl+] 							转到函数定义的地方
 " ctrl+t							回退到函数调用的地方
 "
 "-----------------------------------------taglist快捷键------------------------------------------------
-" <CR>          						跳到光标下tag所定义的位置，用鼠标双击此tag功能也一样                                                                      
-" o             						在一个新打开的窗口中显示光标下tag                                                                               
-" <Space>       						显示光标下tag的原型定义                                                                          
-" u             						更新taglist窗口中的tag                                                              
-" s             						更改排序方式，在按名字排序和按出现顺序排序间切换                                                      
-" x             						taglist窗口放大和缩小，方便查看较长的tag                                                        
-" +             						打开一个折叠，同zoctags常用快捷键ctags常用快捷键                                                   
-" -             						将tag折叠起来，同zc                                                                     
-" *             						打开所有的折叠，同zR                                                                      
-" =             						将所有tag折叠起来，同zM                                                                  
-" [[            						跳到前一个文件                                                                            
-" ]]            						跳到后一个文件                                                                         
-" q             						关闭taglist窗口 
+" <CR>          					跳到光标下tag所定义的位置，用鼠标双击此tag功能也一样                                                                      
+" o             					在一个新打开的窗口中显示光标下tag                                                                               
+" <Space>       					显示光标下tag的原型定义                                                                          
+" u             					更新taglist窗口中的tag                                                              
+" s             					更改排序方式，在按名字排序和按出现顺序排序间切换                                                      
+" x             					taglist窗口放大和缩小，方便查看较长的tag                                                        
+" +             					打开一个折叠，同zoctags常用快捷键ctags常用快捷键                                                   
+" -             					将tag折叠起来，同zc                                                                     
+" *             					打开所有的折叠，同zR                                                                      
+" =             					将所有tag折叠起来，同zM                                                                  
+" [[            					跳到前一个文件                                                                            
+" ]]            					跳到后一个文件                                                                         
+" q             					关闭taglist窗口
 
-         
-         
-         
-         
+
 
