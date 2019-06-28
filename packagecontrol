@@ -43,3 +43,29 @@ packagecontrol被墙，解决办法
 来源：CSDN 
 原文：https://blog.csdn.net/wnbwl/article/details/89323332 
 版权声明：本文为博主原创文章，转载请附上博文链接！
+
+
+{
+	"bootstrapped": true,
+	"channels":
+	[
+		"https://github.com/JavenZ/channel_v3/raw/master/channel_v3.json"
+	],
+	"in_process_packages":
+	[
+		"CTags"
+	],
+	"installed_packages":
+	[
+		"Package Control"
+	]
+}
+
+
+
+
+
+
+
+
+
