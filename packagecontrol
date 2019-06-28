@@ -1,0 +1,45 @@
+packagecontrol被墙，解决办法
+
+    配置packagecontrol文件
+    配置 channels 字段
+
+配置packagecontrol文件
+
+前些天使用sublime text时发现packagecontrol不能使用了，很是纳闷，上网查找一番发现 packagecontrol.io 被墙掉了，解决方法如下。
+
+如果没有packagecontrol也就是首次安装时，打开 sublime 选择 preferences > browse package 目录，返回上一级目录，找到 Installed Packages，将控制台文件放入，重启sublime。
+附上控制台文件：链接: https://pan.baidu.com/s/1j4uXCtbtHAdka4mgki7oRg 提取码:3wqh
+在这里插入图片描述
+在这里插入图片描述
+在这里插入图片描述
+配置 channels 字段
+
+接下来需要配置packagecontrol，打开sublime > preferences > package settings > package control > setting-user
+在这里插入图片描述
+输入以下字段，
+
+    “channels”:
+    [
+    “https://github.com/JavenZ/channel_v3/raw/master/channel_v3.json”
+    ],
+
+在这里插入图片描述
+到此packagecontrol安装成功，之后一切照旧，调出控制台，就可以安装插件了。
+
+补充一下，有时，安装完成之后发现，packagecontrol找不到了，快捷键或者是preference里都没有，问题出在 preference > settings中，打开 settings
+
+    {
+    “ignored_packages”:
+    [
+    “package control”，
+    “Vintage”
+    ],
+    “theme”: “Default.sublime-theme”
+    }
+
+将 “package control” 删除即可
+--------------------- 
+作者：鱼肉一锅汤 
+来源：CSDN 
+原文：https://blog.csdn.net/wnbwl/article/details/89323332 
+版权声明：本文为博主原创文章，转载请附上博文链接！
