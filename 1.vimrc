@@ -20,15 +20,15 @@ set guifont=Menlo:h16:cANSI "设置字体
 set langmenu=zn_CN.UTF-8
 set helplang=cn  "语言设置
 set ruler "在编辑过程中，在右下角显示光标位置的状态行
-set laststatus=1  "总是显示状态行 use  lines for the status bar
 set showcmd "在状态行显示目前所执行的命令，未完成的指令片段也会显示出来
 set scrolloff=3 "光标移动到buffer的顶部和底部时保持3行的距离
 set showmatch "高亮显示对应的括号
 set matchtime=5 "对应括号高亮时间(单位是十分之一秒)
 set matchpairs+=<:>                                               " specially for html
 
-set laststatus=1  "总是显示状态行 use  lines for the status bar
+set laststatus=2  "总是显示状态行 use  lines for the status bar
 set statusline=[%F]%y%r%m%*%=[Line:%l/%L,Column:%c][%p%%] "显示文件名：总行数，总的字符数
+set ruler "在编辑过程中，在右下角显示光标位置的状态行
 " set relativenumber
 
 set autowrite "在切换buffer时自动保存当前文件
@@ -117,6 +117,10 @@ set nonumber "显示行号
 map <F11> :set nonumber<CR>
 map <F12> :set number<CR>
 
+"---------------------------------------------缩进--------------------------------------------
+set paste	" 设置paste，粘贴不会缩进
+set pastetoggle=<F9>    " 切换paste和nopaste
+
 "---------------------------------------------NERDTree-----------------------------------------
 " NERDTree配置
 "map <C-n> :NERDTreeToggle<CR>
@@ -155,6 +159,9 @@ let Tlist_Exit_OnlyWindow=1  "tagList窗口是最后一个窗口，则退出Vim
 let Tlist_Use_Right_Window=1 "在Vim窗口右侧显示taglist窗口
 
 "---------------------------------------------cscope--------------------------------------------
+set nocscopeverbose	"解决E568: duplicate cscope database not added
+let g:rooter_silent_chdir = 1
+
 if has("cscope")  
     set csprg=/usr/bin/cscope  
     set csto=0 
@@ -162,8 +169,8 @@ if has("cscope")
     set csverb  
     set cspc=3 
     "add any database in current dir  
-    if filereadable("cscope.out")  
-        cs add cscope.out  
+    if filereadable("cscope.out") 
+		cs add cscope.out
     "else search cscope.out elsewhere  
     else 
         let cscope_file=findfile("cscope.out",".;")  
